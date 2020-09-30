@@ -1,0 +1,23 @@
+{
+  "name": "ethereal97/php-code-standard",
+  "description": "The PHP Code Standard",
+  "type": "library",
+  "authors": [{
+    "name": "Shin Maung Maung",
+    "email": "ethereal97@gmail.com",
+    "role": "developer"
+  }],
+  "autoload": {
+    "psr-4": {
+      "Ethereal\\": "src/"
+    },
+    "files": [
+      "src/helpers.php"
+    ]
+  },
+  "require": {
+    "php": "^7.2"
+  },
+  "prefer-stable": true,
+  "minimum-stability": "dev"
+}
