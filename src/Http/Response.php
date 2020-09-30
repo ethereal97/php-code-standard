@@ -88,14 +88,29 @@ class Response
     504 => "HTTP_GATEWAY_TIMEOUT",
     505 => "HTTP_VERSION_NOT_SUPPORTED",
   ];
-
-  public static function hasHttpConstant(int $code): bool
+  
+  protected $headers = [];
+  
+  protected $statusCode = 200;
+  
+  public function setStatusCode(int $code)
   {
-    return key_exists($code, self::HTTP_STATUS_CODE);
+    if (!issst(self::HTTP_STATUS_CODE[$code])) {
+      throw new HttpResponseException($code);
+    }
+    
+    $this->statusCode = $code;
   }
-
-  public static function getHttpConstant(int $code): string
+  
+  public function setHeader(string $name, string $value)
   {
-    return self::HTTP_STATUS_CODE[$code];
+    $this->headers[$name] = $value;
+  }
+  
+  public function setHeaders(array $headers)
+  {
+    foreach ($headers as $name => $value) {
+      $this->setHeader($name, $value);
+    }
   }
 }
